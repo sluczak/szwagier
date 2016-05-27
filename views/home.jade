@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  h1 Szwagier
+  p.lead A simple service health monitoring
+  hr
+  .row
+    .col-sm-12
+      table.table.table-bordered.table-striped.table-hover
+        thead
+          tr
+            th type
+            th service name
+            th address
+            th status
+        tbody
+          each service, s in services
+            tr
+              td #{service.name}
+              td #{service.address}
+              td #{service.type}
+              td #{service.status}
+
+
+  form.form-horizontal(id='service-creation-form', method='POST', action="/service")
+    .row
+      .col-sm-4
+        label.control-label(for='name') Name
+      .col-sm-6
+        label.control-label(for='address') Address
+    .row
+      .col-sm-4
+        input.form-control(type='text', name='name', id='name', placeholder='Name', autofocus, required)
+      .col-sm-6
+        input.form-control(type='text', name='address', id='address', placeholder='Address', autofocus, required)
+      .col-sm-2
+        button.btn.btn-success(type='submit')
+          i.fa.fa-plus
+          | Add
