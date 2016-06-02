@@ -1,8 +1,8 @@
 var nodemailer = require('nodemailer');
 
 // Its not a good idea to provide your credentials like this, they should come from an external source. This is only for the demo.
-var EMAIL_ACCOUNT_USER = 'bootcamp.asg@gmail.com';
-var EMAIL_ACCOUNT_PASSWORD = 'BootCampAsg01'
+var EMAIL_ACCOUNT_USER = process.env.MAILER_ACCOUNT_USER;
+var EMAIL_ACCOUNT_PASSWORD = process.env.MAILER_ACCOUNT_PASSWORD; 
 var YOUR_NAME = 'Bootcamp ASG';
 
 //reusable transport, look at the docs to see other service/protocol options
