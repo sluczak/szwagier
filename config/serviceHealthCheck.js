@@ -11,7 +11,7 @@ var ServiceType = require('../models/ServiceType');
 var ServiceStatus = require('../models/ServiceStatus');
 
 
-schedule.scheduleJob("*/5 * * * * *", function() {
+schedule.scheduleJob("* */20 * * * *", function() {
     Service.find({})
         .populate('type')
         .populate('status')
