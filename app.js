@@ -18,6 +18,8 @@ const expressValidator = require('express-validator');
 const sass = require('node-sass-middleware');
 const multer = require('multer');
 const upload = multer({ dest: path.join(__dirname, 'uploads') });
+const serviceHealthCheck = require('./config/serviceHealthCheck' +
+    '');
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -29,7 +31,6 @@ dotenv.load({ path: '.env.example' });
  */
 const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
-const contactController = require('./controllers/contact');
 
 /**
  * API keys and Passport configuration.
@@ -107,8 +108,6 @@ app.get('/reset/:token', userController.getReset);
 app.post('/reset/:token', userController.postReset);
 app.get('/signup', userController.getSignup);
 app.post('/signup', userController.postSignup);
-app.get('/contact', contactController.getContact);
-app.post('/contact', contactController.postContact);
 app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
 app.post('/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile);
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
@@ -128,3 +127,7 @@ app.listen(app.get('port'), () => {
 });
 
 module.exports = app;
+
+/**
+ *  Start service scheduler
+ */

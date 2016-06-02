@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h1 Szwagier
+  h1 Service status
   p.lead A simple service health monitoring
   hr
   .row
@@ -16,10 +16,10 @@ block content
         tbody
           each service, s in services
             tr
+              td #{service.type.name}
               td #{service.name}
-              td #{service.address}
-              td #{service.type}
-              td #{service.status}
+              td #{service.url}
+              td #{service.status.name}
 
 
   form.form-horizontal(id='service-creation-form', method='POST', action="/service")
